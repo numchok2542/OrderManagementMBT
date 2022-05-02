@@ -7,6 +7,8 @@ import org.graphwalker.core.generator.*;
 import org.graphwalker.websocket.WebSocketServer;
 import org.junit.jupiter.api.*;
 
+import java.io.IOException;
+
 class OrderTest {
 
     @BeforeEach
@@ -21,9 +23,9 @@ class OrderTest {
         context.setPathGenerator(new RandomPath(new EdgeCoverage(50)));
 
         /* Uncomment the following three lines to enable GraphWalker player */
-        //OrderAdapter.delay = 500;
-        //WebSocketServer server = new WebSocketServer(8887, executor.getMachine());
-        //server.start();
+        OrderAdapter.delay = 500;
+        WebSocketServer server = new WebSocketServer(8887, executor.getMachine());
+        server.start();
 
         Result result = executor.execute(true);
         if (result.hasErrors()) {
@@ -33,5 +35,11 @@ class OrderTest {
         }
         System.out.println("Done: [" + result.getResults().toString(2) + "]");
     }
-
+    public void main(String[] args){
+        try {
+            testMBT();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

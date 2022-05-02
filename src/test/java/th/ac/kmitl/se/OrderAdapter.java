@@ -34,7 +34,11 @@ public class OrderAdapter extends ExecutionContext {
     public void setUp() {
         // Add the code here to be executed before
         // GraphWalk starts traversing the model.
-
+        OrderDB mockorderdb = mock(OrderDB.class);
+        ProductDB mockproddb = mock(ProductDB.class);
+        PaymentService ps = mock(PaymentService.class);
+        ShippingService ss = mock(ShippingService.class);
+        Order ord1 = mock(Order.class);
     }
 
     @Edge()
